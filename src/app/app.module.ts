@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 
 import { FormsModule } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ImageDetailsComponent } from './components/image-details/image-details.component';
@@ -26,10 +27,9 @@ import { HomeComponent } from './pages/home/home.component';
     AppRoutingModule,
     SharedModule,
     HttpClientModule,
-    FormsModule,
-
+    FormsModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

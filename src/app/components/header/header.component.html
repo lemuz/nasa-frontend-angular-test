@@ -9,5 +9,12 @@
     </label>
 </div>
 
-<div class="" id="google-button"></div>
+<div class="user-info" *ngIf="isLoggedIn; else loginButton">
+    <p>Welcome, {{ userName }}</p>
+    <p>{{ userEmail }}</p>
+    <button (click)="onLogout()">Logout</button>
+</div>
 
+<ng-template #loginButton>
+    <div id="google-button"></div>
+</ng-template>
