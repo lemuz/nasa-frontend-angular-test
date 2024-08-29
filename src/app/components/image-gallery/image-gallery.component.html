@@ -1,0 +1,15 @@
+<div class="gallery">
+    <div class="gallery-item" *ngFor="let item of imageItems" (click)="viewDetails(item)">
+        <div *ngIf="!item.tieneVideo">
+            <img [src]="item.links[0].href" [alt]="item.data[0].title">
+        </div>
+        <div *ngIf="item.tieneVideo">
+            <img *ngIf="!item.isVideoPlaying" [src]="item.links[0].href" [alt]="item.data[0].title" class="preview">
+            <video #videoPlayer *ngIf="item.isVideoPlaying" controls>
+                <source [src]="item.linkVideo" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <h3>{{ item.data[0].title }}</h3>
+    </div>
+</div>

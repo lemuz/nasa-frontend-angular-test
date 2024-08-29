@@ -1,0 +1,80 @@
+/* Estilo para el contenedor de los detalles de la imagen */
+.image-detail {
+    max-width: 800px;
+    /* Máximo ancho del contenedor */
+    margin: 0 auto;
+    /* Centrar el contenedor horizontalmente */
+    padding: 20px;
+    /* Espacio interno del contenedor */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Sombra sutil para destacar el contenedor */
+}
+
+/* Estilo para los encabezados */
+.image-detail h2 {
+    font-size: 1.5em;
+    /* Tamaño de fuente del título */
+    margin-bottom: 10px;
+    /* Espacio debajo del título */
+}
+
+/* Estilo para los párrafos */
+.image-detail p {
+    font-size: 1em;
+    /* Tamaño de fuente del párrafo */
+    line-height: 1.6;
+    /* Espacio entre líneas */
+    margin-bottom: 20px;
+    /* Espacio debajo del párrafo */
+}
+
+/* Estilo para el video */
+.image-detail video {
+    width: 100%;
+    /* Hacer que el video ocupe el 100% del ancho del contenedor */
+    height: auto;
+    /* Mantener la proporción del video */
+    max-width: 100%;
+    /* Asegurar que no exceda el tamaño del contenedor */
+    border: 1px solid #ddd;
+    /* Borde sutil alrededor del video */
+}
+
+/* Estilo para la imagen */
+.image-detail img {
+    width: 100%;
+    /* Hacer que la imagen ocupe el 100% del ancho del contenedor */
+    height: auto;
+    /* Mantener la proporción de la imagen */
+    max-width: 100%;
+    /* Asegurar que no exceda el tamaño del contenedor */
+    border: 1px solid #ddd;
+    /* Borde sutil alrededor de la imagen */
+}
+
+/* Estilo para el botón */
+.image-detail button {
+    display: inline-block;
+    /* Mostrar como un bloque en línea */
+    padding: 10px 20px;
+    /* Espacio interno del botón */
+    font-size: 1em;
+    /* Tamaño de fuente del botón */
+    color: #fff;
+    /* Color del texto del botón */
+    background-color: #007bff;
+    /* Color de fondo del botón */
+    border: none;
+    /* Sin borde */
+    border-radius: 4px;
+    /* Bordes redondeados */
+    cursor: pointer;
+    /* Cambiar el cursor al pasar sobre el botón */
+    transition: background-color 0.3s;
+    /* Transición suave para el color de fondo */
+}
+
+.image-detail button:hover {
+    background-color: #0056b3;
+    /* Color de fondo al pasar el ratón sobre el botón */
+}

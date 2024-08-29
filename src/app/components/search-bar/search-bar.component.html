@@ -1,0 +1,14 @@
+<div class="search-bar">
+    <input type="text" placeholder='Search for... (e.g. "Orion")' [(ngModel)]="searchQuery">
+    <div class="filters">
+        <label>
+            <input type="checkbox" [(ngModel)]="filterImages">
+            Imagenes
+        </label>
+        <label>
+            <input type="checkbox" [(ngModel)]="filterVideos">
+            Videos
+        </label>
+    </div>
+    <button (click)="onSearch()">🔍</button>
+</div>
