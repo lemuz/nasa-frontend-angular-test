@@ -21,3 +21,6 @@ COPY --from=build-step /app/dist/nasa-technical-test /usr/share/nginx/html
 
 #ejecutar para iniciar contenedor
 #docker run --name asa-frontend-angular-test-container -d -p 8080:80 asa-frontend-angular-test
+
+#url
+#http://localhost:8080/
