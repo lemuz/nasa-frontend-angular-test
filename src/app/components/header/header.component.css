@@ -3,6 +3,7 @@ button {
     padding: 10px;
     font-size: 1.5em;
     cursor: pointer;
+    font-family: "Roboto", sans-serif;
 }
 
 .header {
@@ -12,7 +13,8 @@ button {
     padding: 10px;
     background-color: #f8f9fa;
     border-bottom: 1px solid #e9ecef;
-    width: 100%; /* Asegura que el header ocupe todo el ancho */
+    width: 100%;
+    font-family: "Roboto", sans-serif;
 }
 
 .button-group {
@@ -62,6 +64,7 @@ button {
 #google-button, .user-info {
     align-self: flex-end;
     padding: 8px 15px;
+    font-family: "Roboto", sans-serif;
 }
 
 @media (max-width: 768px) {
