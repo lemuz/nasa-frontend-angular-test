@@ -2,9 +2,9 @@
 <app-search-bar (searchInitiated)="onSearch($event)"></app-search-bar>
 
 <div *ngIf="!showDetails">
-    <app-image-gallery [imageItems]="imageItems"  (imagenClick)="onImageClick($event)"></app-image-gallery>
+    <app-image-gallery [imageItems]="imageItems"  (imagenClick)="onImageClick($event)" (imageItemsChanged)="onBackToGallery()"></app-image-gallery>
 </div>
 
 <div *ngIf="showDetails">
-    <app-image-details [imageItems]="imageItems" [imagenClick]="imagenSeleccionada" (back)="onBackToGallery()"></app-image-details>
+    <app-image-details [imageItems]="imageItems" [imagenClick]="imagenSeleccionada" (loadGallery)="onBackToGallery()"></app-image-details>
 </div>

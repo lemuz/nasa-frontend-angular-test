@@ -10,7 +10,7 @@ import { ApiService } from 'src/app/services/api-access.service';
 })
 export class HomeComponent implements OnInit {
   
-  @Output() imageItemsChanged = new EventEmitter<any[]>();
+  @Output() imageItemsChanged = new EventEmitter<void>();
   imageItems: any[] = [];
   imagenSeleccionada: any = null;
   sortChanged: string = 'recent';
@@ -33,6 +33,7 @@ export class HomeComponent implements OnInit {
   }
 
   loadImages(sortOption: string) {
+    this.showDetails = false;
     const params: any = {
       orderBy: sortOption
     };
@@ -54,7 +55,7 @@ export class HomeComponent implements OnInit {
         item.tieneVideo = false;
       }
     });
-    this.imageItemsChanged.emit(items);
+    this.imageItemsChanged.emit();
   }
 
   onImageClick(imagen: any) {
