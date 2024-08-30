@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/services/api-access.service';
 
 @Component({
@@ -11,12 +11,11 @@ export class ImageDetailsComponent implements OnInit {
 
   @Input() imagenClick: any;
   @Input() imageItems: any[] = [];
-  @Output() back = new EventEmitter<void>();
+  @Output() loadGallery = new EventEmitter<void>();
 
   constructor(
     private route: ActivatedRoute,
     private apiService: ApiService,
-    private router: Router,
     private cdr: ChangeDetectorRef 
   ) { }
 
@@ -24,7 +23,7 @@ export class ImageDetailsComponent implements OnInit {
 }
 
   goBack() {
-    this.back.emit();
+    this.loadGallery.emit();
   }
 
   playVideo() {

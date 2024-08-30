@@ -10,7 +10,7 @@ import { ApiService } from 'src/app/services/api-access.service';
 })
 export class HomeComponent implements OnInit {
   
-  @Output() imageItemsChanged = new EventEmitter<void>();
+  @Output() imageItemsChanged = new EventEmitter<any[]>();
   imageItems: any[] = [];
   imagenSeleccionada: any = null;
   sortChanged: string = 'recent';
@@ -55,7 +55,7 @@ export class HomeComponent implements OnInit {
         item.tieneVideo = false;
       }
     });
-    this.imageItemsChanged.emit();
+    this.imageItemsChanged.emit(items);
   }
 
   onImageClick(imagen: any) {
