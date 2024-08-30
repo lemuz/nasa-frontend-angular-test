@@ -16,7 +16,7 @@ FROM nginx:1.17.1-alpine
 
 COPY --from=build-step /app/dist/nasa-technical-test /usr/share/nginx/html
 
-#ejecutar para descargar imagen
+#ejecutar para descargar imagen(https://hub.docker.com/repository/docker/zkato/asa-frontend-angular-test/general)
 #docker pull zkato/asa-frontend-angular-test
 
 #ejecutar para iniciar contenedor
