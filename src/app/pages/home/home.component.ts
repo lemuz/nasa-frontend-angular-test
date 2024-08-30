@@ -1,5 +1,5 @@
 import { HttpParams } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api-access.service';
 
@@ -9,10 +9,11 @@ import { ApiService } from 'src/app/services/api-access.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
+  
+  @Output() imageItemsChanged = new EventEmitter<any[]>();
   imageItems: any[] = [];
   imagenSeleccionada: any = null;
-  sortOption: string = 'recent';
+  sortChanged: string = 'recent';
   showDetails: boolean = false;
 
   constructor(
@@ -21,7 +22,7 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.loadImages(this.sortOption);
+    this.loadImages(this.sortChanged);
   }
 
   onSearch(params: any) {
@@ -53,6 +54,7 @@ export class HomeComponent implements OnInit {
         item.tieneVideo = false;
       }
     });
+    this.imageItemsChanged.emit(items);
   }
 
   onImageClick(imagen: any) {
