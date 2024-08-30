@@ -17,5 +17,5 @@ FROM nginx:1.17.1-alpine
 COPY --from=build-step /app/dist/nasa-technical-test /usr/share/nginx/html
 
 #ejecutar luego de compilar imagen
-#docker build -t asa-frontend-angular-test . 
+#docker build -t asa-frontend-angular-test .
 #docker run --name asa-frontend-angular-test-container -d -p 8080:80 asa-frontend-angular-test
