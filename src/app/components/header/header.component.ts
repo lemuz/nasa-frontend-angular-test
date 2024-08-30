@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { jwtDecode } from 'jwt-decode';
 import { CookieService } from 'ngx-cookie-service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-header',
@@ -16,46 +17,59 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private cookieService: CookieService
-    ){}
+  ) { }
 
   ngOnInit(): void {
+    let jwt = localStorage.getItem('tkn');
+    if(jwt){
+      this.getCredentials(jwt);
+      this.isLoggedIn = true;
+    }else{
+      this.isLoggedIn = false;
+    }
+    
     this.initializeGoogleSignIn();
   }
 
   initializeGoogleSignIn() {
     // @ts-ignore
     google.accounts.id.initialize({
-      client_id: "1083503518625-e8b4i8mmuvrv5f8u4b2a2dqgj56g7v6r.apps.googleusercontent.com",
+      client_id: environment.clientId,
       callback: this.handleCredentialResponse.bind(this),
       auto_select: false,
       cancel_on_tap_outside: true,
     });
 
+    this.renderGoogleButton();
+  }
+
+  renderGoogleButton() {
     if (!this.isLoggedIn) {
-      // @ts-ignore
-      google.accounts.id.renderButton(
-        document.getElementById("google-button"),
-        { theme: "outline", size: "large", width: "100%" }
-      );
-      // @ts-ignore
-      google.accounts.id.prompt((notification: PromptMomentNotification) => { });
+      setTimeout(() => {
+        const googleButton = document.getElementById("google-button");
+        if (googleButton) {
+          // @ts-ignore
+          google.accounts.id.renderButton(
+            googleButton,
+            { theme: "outline", size: "large", width: "100%" }
+          );
+          // @ts-ignore
+          google.accounts.id.prompt((notification: PromptMomentNotification) => { });
+        }
+      }, 0);
+    } else {
+
     }
   }
 
   handleCredentialResponse(response: any) {
-    // Guardar el token JWT en localStorage
     localStorage.setItem('tkn', response.credential);
-    // Decodificar el token JWT para obtener la información del usuario
-    const decodedToken: any = jwtDecode(response.credential);
-    this.userName = decodedToken.name;
-    this.userEmail = decodedToken.email;
-
-    // Marcar que el usuario ha iniciado sesión y ocultar el botón
+    this.getCredentials(response.credential);
     this.isLoggedIn = true;
   }
 
-  onSortChange() {
-    this.sortChanged.emit(this.sortOption);
+  onSortChange(sortOption: string) {
+    this.sortChanged.emit(sortOption);
   }
 
   onLogout() {
@@ -66,7 +80,6 @@ export class HeaderComponent implements OnInit {
     this.userName = '';
     this.userEmail = '';
 
-    // Re-render the Google Sign-In button
     setTimeout(() => {
       // @ts-ignore
       google.accounts.id.renderButton(
@@ -74,5 +87,11 @@ export class HeaderComponent implements OnInit {
         { theme: "outline", size: "large", width: "100%" }
       );
     }, 0);
+  }
+
+  getCredentials(jwt: string){
+    const decodedToken: any = jwtDecode(jwt);
+    this.userName = decodedToken.name;
+    this.userEmail = decodedToken.email;
   }
 }

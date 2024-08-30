@@ -1,20 +1,16 @@
-<div class="radio-buttons">
-    <label>
-        <input type="radio" name="sort" value="recent" [(ngModel)]="sortOption" (change)="onSortChange()">
-        Nuevas Actualizaciones
-    </label>
-    <label>
-        <input type="radio" name="sort" value="popular" [(ngModel)]="sortOption" (change)="onSortChange()">
-        Populares
-    </label>
-</div>
+<div class="header">
+    <div class="button-group">
+        <button class="button-item" (click)="onSortChange('recent')">Nuevas Actualizaciones</button>
+        <button class="button-item" (click)="onSortChange('popular')">Populares</button>
+    </div>
 
-<div class="user-info" *ngIf="isLoggedIn; else loginButton">
-    <p>Welcome, {{ userName }}</p>
-    <p>{{ userEmail }}</p>
-    <button (click)="onLogout()">Logout</button>
-</div>
+    <div class="user-info" *ngIf="isLoggedIn; else loginButton">
+        <span>Welcome, {{ userName }}</span>
+        <span>{{ userEmail }}</span>
+        <button (click)="onLogout()">Logout</button>
+    </div>
 
-<ng-template #loginButton>
-    <div id="google-button"></div>
-</ng-template>
+    <ng-template #loginButton>
+        <div id="google-button"></div>
+    </ng-template>
+</div>

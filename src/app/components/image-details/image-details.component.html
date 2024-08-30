@@ -1,17 +1,31 @@
 <div class="image-detail">
-    <h2>{{ item?.data[0].title }}</h2>
-    <p>{{ item?.data[0].description }}</p>
-
-    <div *ngIf="!item.tieneVideo">
-            <img [src]="item.links[0].href" [alt]="item.data[0].title">
-        </div>
-        <div *ngIf="item.tieneVideo">
-            <img *ngIf="!item.isVideoPlaying" [src]="item.links[0].href" [alt]="item.data[0].title" (click)="playVideo()" class="preview">
-            <video #videoPlayer *ngIf="item.isVideoPlaying" controls>
-                <source [src]="item.linkVideo" type="video/mp4">
+    <div class="header">
+        <h2>{{ imagenClick?.data[0].title }}</h2>
+        <p class="nasa-id">NASA ID: {{ imagenClick?.data[0].nasa_id }}</p>
+    </div>
+    
+    <div class="media-container">
+        <div *ngIf="imagenClick.tieneVideo" class="video-section">
+            <video #videoPlayer controls [poster]="imagenClick.links[0].href">
+                <source [src]="imagenClick.linkVideo" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         </div>
+        <div *ngIf="!imagenClick.tieneVideo" class="image-section">
+            <img [src]="imagenClick.links[0].href" [alt]="imagenClick.data[0].title">
+        </div>
+    </div>
+
+    <div class="metadata">
+        <p><strong>Creation Date:</strong> {{ imagenClick?.data[0].date_created | date }}</p>
+        <p><strong>Center:</strong> {{ imagenClick?.data[0].center }}</p>
+        <p><strong>Keywords:</strong> {{ imagenClick?.data[0].keywords?.join(', ') }}</p>
+    </div>
+
+    <div class="description">
+        <p>{{ imagenClick?.data[0].description }}</p>
+        <a *ngIf="imagenClick?.url" [href]="imagenClick?.url" target="_blank">Learn more</a>
+    </div>
 
     <button (click)="goBack()">Back to Gallery</button>
 </div>

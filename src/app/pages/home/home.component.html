@@ -1,3 +1,10 @@
 <app-header (sortChanged)="loadImages($event)"></app-header>
 <app-search-bar (searchInitiated)="onSearch($event)"></app-search-bar>
-<app-image-gallery [imageItems]="imageItems"></app-image-gallery>
+
+<div *ngIf="!showDetails">
+    <app-image-gallery [imageItems]="imageItems"  (imagenClick)="onImageClick($event)"></app-image-gallery>
+</div>
+
+<div *ngIf="showDetails">
+    <app-image-details [imageItems]="imageItems" [imagenClick]="imagenSeleccionada" (back)="onBackToGallery()"></app-image-details>
+</div>

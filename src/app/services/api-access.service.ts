@@ -52,12 +52,12 @@ export class ApiService {
           return response.collection.items;
         } else {
           Swal.fire('Advertencia', 'No se encontraron resultados', 'warning');
-          return [];  // Retorna un array vacío si no hay resultados
+          return [];
         }
       }),
       catchError(error => {
         Swal.fire('Error', 'No fue posible procesar la petición, contacte con <b>El administrador del sistema</b> si el problema persiste', 'error');
-        return of([]);  // Retorna un array vacío en caso de error
+        return of([]);
       })
     );
   }

@@ -8,7 +8,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 export class SearchBarComponent {
   searchQuery: string = '';
   filterImages: boolean = true;
-  filterVideos: boolean = false;
+  filterVideos: boolean = true;
 
   @Output() searchInitiated = new EventEmitter<any>();
 

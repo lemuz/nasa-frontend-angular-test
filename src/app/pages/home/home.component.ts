@@ -11,7 +11,9 @@ import { ApiService } from 'src/app/services/api-access.service';
 export class HomeComponent implements OnInit {
 
   imageItems: any[] = [];
+  imagenSeleccionada: any = null;
   sortOption: string = 'recent';
+  showDetails: boolean = false;
 
   constructor(
     private apiService: ApiService,
@@ -51,5 +53,15 @@ export class HomeComponent implements OnInit {
         item.tieneVideo = false;
       }
     });
+  }
+
+  onImageClick(imagen: any) {
+    this.imagenSeleccionada = imagen;
+    this.showDetails = true;
+    this.imageItems = [...this.imageItems];
+  }
+
+  onBackToGallery() {
+    this.showDetails = false;
   }
 }

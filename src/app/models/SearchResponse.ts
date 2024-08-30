@@ -16,6 +16,7 @@ export interface Item{
     links: Link[];
     tieneVideo: boolean;
     linkVideo: string;
+    url: string
 }
 
 export interface Metadata{

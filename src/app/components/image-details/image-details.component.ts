@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api-access.service';
 
@@ -8,7 +8,10 @@ import { ApiService } from 'src/app/services/api-access.service';
   styleUrls: ['./image-details.component.css']
 })
 export class ImageDetailsComponent implements OnInit {
-  item: any;
+
+  @Input() imagenClick: any;
+  @Input() imageItems: any[] = [];
+  @Output() back = new EventEmitter<void>();
 
   constructor(
     private route: ActivatedRoute,
@@ -18,14 +21,13 @@ export class ImageDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.item = JSON.parse(localStorage.getItem('item') || '{}');
 }
 
   goBack() {
-    this.router.navigate(['/']);
+    this.back.emit();
   }
 
   playVideo() {
-    this.item.isVideoPlaying = true;
+    this.imagenClick.isVideoPlaying = true;
   }
 }
