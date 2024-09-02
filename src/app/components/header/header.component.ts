@@ -10,7 +10,6 @@ import { environment } from 'src/environments/environment';
 })
 export class HeaderComponent implements OnInit {
   @Output() sortChanged = new EventEmitter<string>();
-  @Output() loadGallery = new EventEmitter<void>();
 
   sortOption: string = 'recent';
   isLoggedIn: boolean = false;

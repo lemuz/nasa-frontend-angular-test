@@ -1,6 +1,5 @@
 import { HttpParams } from '@angular/common/http';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api-access.service';
 
 @Component({
@@ -10,15 +9,13 @@ import { ApiService } from 'src/app/services/api-access.service';
 })
 export class HomeComponent implements OnInit {
   
-  @Output() imageItemsChanged = new EventEmitter<any[]>();
-  imageItems: any[] = [];
+  imagenes: any[] = [];
   imagenSeleccionada: any = null;
   sortChanged: string = 'recent';
   showDetails: boolean = false;
 
   constructor(
-    private apiService: ApiService,
-    private router: Router
+    private apiService: ApiService
   ) {}
 
   ngOnInit(): void {
@@ -26,9 +23,10 @@ export class HomeComponent implements OnInit {
   }
 
   onSearch(params: any) {
+    this.showDetails = false;
     this.apiService.search(params).subscribe(items => {
-      this.imageItems = items;
-      this.processItems(this.imageItems);
+      this.imagenes = items;
+      this.processItems(this.imagenes);
     });
   }
 
@@ -39,8 +37,8 @@ export class HomeComponent implements OnInit {
     };
 
     this.apiService.asset('', params).subscribe(items => {
-      this.imageItems = items;
-      this.processItems(this.imageItems);
+      this.imagenes = items;
+      this.processItems(this.imagenes);
     });
   }
 
@@ -55,13 +53,12 @@ export class HomeComponent implements OnInit {
         item.tieneVideo = false;
       }
     });
-    this.imageItemsChanged.emit(items);
   }
 
   onImageClick(imagen: any) {
     this.imagenSeleccionada = imagen;
     this.showDetails = true;
-    this.imageItems = [...this.imageItems];
+    this.imagenes = [...this.imagenes];
   }
 
   onBackToGallery() {

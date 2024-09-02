@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/services/api-access.service';
 
@@ -10,13 +10,11 @@ import { ApiService } from 'src/app/services/api-access.service';
 export class ImageDetailsComponent implements OnInit {
 
   @Input() imagenClick: any;
-  @Input() imageItems: any[] = [];
   @Output() loadGallery = new EventEmitter<void>();
 
   constructor(
     private route: ActivatedRoute,
-    private apiService: ApiService,
-    private cdr: ChangeDetectorRef 
+    private apiService: ApiService
   ) { }
 
   ngOnInit(): void {
